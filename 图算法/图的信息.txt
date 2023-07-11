@@ -1,0 +1,7 @@
+5 5
+abcde
+a b 4
+a d 5
+b c 6
+b e 8
+c e 7
