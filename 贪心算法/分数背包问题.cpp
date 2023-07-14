@@ -4,34 +4,36 @@
 using namespace std;
 
 struct Item {
-    int price;
-    int weight;
-    double valuePerWeight;
+    int price; // 物品的价值
+    int weight; // 物品的重量
+    double valuePerWeight; // 物品的单位重量价值
 };
 
+// 自定义比较函数，按单位重量价值递减排序
 bool compare(Item& a, Item& b) {
-    return a.valuePerWeight > b.valuePerWeight; // ����λ������ֵ�ݼ�����
+    return a.valuePerWeight > b.valuePerWeight;
 }
 
+// 分数背包问题函数
 int FractionalKnapsack(vector<Item>& items, int capacity) {
     int totalValue = 0;
-    sort(items.begin(), items.end(), compare); // ����λ������ֵ�ݼ�����
+    sort(items.begin(), items.end(), compare); // 按单位重量价值递减排序
 
     for (int i = 0; i < items.size(); i++) {
-        if (capacity == 0)
+        if (capacity == 0) // 如果背包容量已经为0，跳出循环
             break;
 
-        if (items[i].weight <= capacity) {
-            totalValue += items[i].price;
-            capacity -= items[i].weight;
+        if (items[i].weight <= capacity) { // 如果该物品可以全部放入背包
+            totalValue += items[i].price; // 更新总价值
+            capacity -= items[i].weight; // 更新背包容量
         }
-        else {
-            totalValue += (items[i].price * capacity) / items[i].weight;
-            break;
+        else { // 如果该物品只能部分放入背包
+            totalValue += (items[i].price * capacity) / items[i].weight; // 更新总价值
+            break; // 跳出循环
         }
     }
 
-    return totalValue;
+    return totalValue; // 返回总价值
 }
 
 int main() {
@@ -44,7 +46,7 @@ int main() {
 
     int maxPrice = FractionalKnapsack(items, capacity);
 
-    cout << "��������Ʒ������ܼ۸�Ϊ��" << maxPrice << endl;
+    cout << "背包中物品的最大总价格为：" << maxPrice << endl;
 
     return 0;
 }
