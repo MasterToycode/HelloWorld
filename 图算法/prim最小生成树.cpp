@@ -7,7 +7,7 @@ typedef struct Prim {
 	char redpeak;
 	int blackweight;
 }prim;
-//ÊµÏÖÉú³ÉÊ÷µÄ¸¨ÖúÊı×é
+//å®ç°ç”Ÿæˆæ ‘çš„è¾…åŠ©æ•°ç»„
 
 
 
@@ -39,7 +39,7 @@ void creat_graph(int n, int m, char*& grpah, int**& grpah1)
 	for (i = 0; i < 5; i++)
 	{
 		for (j = 0; j < 5; j++)
-			*(*(grpah1 + i) + j) = '¡Ş';
+			*(*(grpah1 + i) + j) = 'âˆ';
 	}
 	char v1, v2;
 	int w;
@@ -52,7 +52,7 @@ void creat_graph(int n, int m, char*& grpah, int**& grpah1)
 		*(*(grpah1 + i) + j) = w;
 		*(*(grpah1 + j) + i) = w;
 	}
-}//½¨Á¢ÁÚ½Ó¾ØÕó
+}//å»ºç«‹é‚»æ¥çŸ©é˜µ
 
 
 
@@ -63,10 +63,10 @@ int  first_adj(int a, int** grpah1)
 	int i = 0;
 	for (i = 0; i < 5; i++)
 	{
-		if (*(*(grpah1 + a) + i) != '¡Ş')  return i;
+		if (*(*(grpah1 + a) + i) != 'âˆ')  return i;
 	}
 	return -1;
-}//Ñ°ÕÒ¶¥µãµÄÁÚ½Óµã
+}//å¯»æ‰¾é¡¶ç‚¹çš„é‚»æ¥ç‚¹
 
 
 
@@ -77,11 +77,11 @@ int first_adj_deep(int b, int** grpah1, int  c) {
 
 	for (int i = b + 1; i < 5; i++)
 	{
-		if (*(*(grpah1 + c) + i) != '¡Ş') return i;
+		if (*(*(grpah1 + c) + i) != 'âˆ') return i;
 
 	}
 	return -1;
-}//Ñ°ÕÒ¶¥µãµÄËùÓĞÁÚ½Óµã
+}//å¯»æ‰¾é¡¶ç‚¹çš„æ‰€æœ‰é‚»æ¥ç‚¹
 
 
 
@@ -104,7 +104,7 @@ int minprim(prim* mc)
 		}
 	}
 	return key;
-}//ÕÒµ½¸¨ÖúÊı×éÖĞµÄ×îĞ¡µÄ²»Îª0 µÄÈ¨Öµ
+}//æ‰¾åˆ°è¾…åŠ©æ•°ç»„ä¸­çš„æœ€å°çš„ä¸ä¸º0 çš„æƒå€¼
 
 
 
@@ -116,13 +116,13 @@ int minprim(prim* mc)
 
 void creat___prim(prim*& mc, int**& grpah1, char*& graph, char x)
 {
-	int k = locat(graph, x);//Ñ°ÕÒxµÄĞòºÅ
+	int k = locat(graph, x);//å¯»æ‰¾xçš„åºå·
 	int w = first_adj(k, grpah1);
 	for (int i = 0; i < 5; i++)
 	{
 		(mc + i)->blackweight = INT16_MAX;
 
-	}//ÔÚÕâÀï³õÊ¼»¯ËùÓĞµÄµÄ³õÊ¼Êı×éµÄÈ¨ÖµÎªÁË·ÀÖ¹µ±Ò»¸ö¶¥µãËùÓĞÁÙ½Óµã¶¼ÍØÕ¹ÍêÁËÖ®ºó£¬À©Õ¹ÏÂÒ»¸ö¶¥µãÊ±Î´³õÊ¼»¯¸¨ÖúÊı×éÊÇ£¬È¨ÖµÎŞ·¨´æÈë¡£
+	}//åœ¨è¿™é‡Œåˆå§‹åŒ–æ‰€æœ‰çš„çš„åˆå§‹æ•°ç»„çš„æƒå€¼ä¸ºäº†é˜²æ­¢å½“ä¸€ä¸ªé¡¶ç‚¹æ‰€æœ‰ä¸´æ¥ç‚¹éƒ½æ‹“å±•å®Œäº†ä¹‹åï¼Œæ‰©å±•ä¸‹ä¸€ä¸ªé¡¶ç‚¹æ—¶æœªåˆå§‹åŒ–è¾…åŠ©æ•°ç»„æ˜¯ï¼Œæƒå€¼æ— æ³•å­˜å…¥ã€‚
 	while (w >= 0)
 	{
 		(mc + w)->blackweight = *(*(grpah1 + k) + w);
@@ -132,7 +132,7 @@ void creat___prim(prim*& mc, int**& grpah1, char*& graph, char x)
 	(mc + k)->blackweight = 0;
 	for (int i = 1; i < 5; i++)
 	{
-		k = minprim(mc);//Çó³öÊ÷ÖĞµÄÏÂÒ»¸ö¶¥µã
+		k = minprim(mc);//æ±‚å‡ºæ ‘ä¸­çš„ä¸‹ä¸€ä¸ªé¡¶ç‚¹
 		cout << (mc + k)->redpeak << " " << *(graph + k) << endl;
 		(mc + k)->blackweight = 0;
 		w = first_adj(k, grpah1);
@@ -148,7 +148,7 @@ void creat___prim(prim*& mc, int**& grpah1, char*& graph, char x)
 			w = first_adj_deep(w, grpah1, k);
 		}
 	}
-}//×îĞ¡Éú³ÉÊ÷µÄÊµÏÖ´úÂë
+}//æœ€å°ç”Ÿæˆæ ‘çš„å®ç°ä»£ç 
 
 
 
@@ -157,13 +157,13 @@ int main()
 	int n;
 	int m;
 	cin >> n >> m;
-	char* graph = new char[n];//´æ´¢¶¥µãµÄĞÅÏ¢µÄ¾ØÕó
+	char* graph = new char[n];//å­˜å‚¨é¡¶ç‚¹çš„ä¿¡æ¯çš„çŸ©é˜µ
 	int** grpah1 = new int* [n];
 	int symbol[5] = { 0,0,0,0,0 };
 	int* p = symbol;
 	for (int k = 0; k < m; k++)
 	{
-		*(grpah1 + k) = new int[m];//½¨Á¢ÁÚ½Ó¾ØÕó
+		*(grpah1 + k) = new int[m];//å»ºç«‹é‚»æ¥çŸ©é˜µ
 	}
 	creat_graph(n, m, graph, grpah1);
 	int i = 0;
@@ -172,7 +172,7 @@ int main()
 	{
 		for (j = 0; j < 5; j++)
 		{
-			if (*(*(grpah1 + i) + j) == '¡Ş')cout << "¡Ş" << " ";
+			if (*(*(grpah1 + i) + j) == 'âˆ')cout << "âˆ" << " ";
 			else cout << *(*(grpah1 + i) + j) << " ";
 		}
 		cout << endl;
@@ -180,7 +180,7 @@ int main()
 	prim* msct = new prim[5];
 	cout << endl;
 	char x;
-	cin >> x;//¶¨Òå¿ªÊ¼Éú³ÉÊ÷µÄ¿ªÊ¼¶¥µã
+	cin >> x;//å®šä¹‰å¼€å§‹ç”Ÿæˆæ ‘çš„å¼€å§‹é¡¶ç‚¹
 	creat___prim(msct, grpah1, graph, x);
 }
 
