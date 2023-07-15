@@ -2,7 +2,8 @@
 #include<vector>
 #include<climits>
 using namespace std;
-int  Fun_activity(vector<int>& s, vector<int>& f, int n1, int n2, vector<vector<int>>& m, vector<vector<int>>& p)
+
+int Fun_activity(vector<int>& s, vector<int>& f, int n1, int n2, vector<vector<int>>& m)
 {
     if (m[n1][n2] != -1)
     {
@@ -11,22 +12,16 @@ int  Fun_activity(vector<int>& s, vector<int>& f, int n1, int n2, vector<vector<
     else if (n1 + 1 == n2)
     {
         m[n1][n2] = 1;
+        return 1; // æ·»åŠ æ­¤è¡Œä»¥è¿”å›žåŸºæœ¬æƒ…å†µä¸‹çš„å€¼
     }
     else
     {
         int maxCount = 0;
         for (int i = n1 + 1; i < n2; i++)
         {
-            if (f[n1] <= s[i] && f[i] <= s[n2])  // ¼ì²é»î¶¯µÄ¼æÈÝÐÔ
+            if (f[n1] <= s[i] && f[i] <= s[n2])  // æ£€æŸ¥æ´»åŠ¨çš„å…¼å®¹æ€§
             {
-                Fun_activity(s, f, n1, i, m, p);
-                Fun_activity(s, f, i, n2, m, p);
-                int count = m[n1][i] + m[i][n2] + 1;
-                if (count > maxCount)
-                {
-                    maxCount = count;
-                    p[n1][n2] = i; // ¸üÐÂpÊý×é£¬´æ´¢µ±Ç°µÄ×î´ó¼æÈÝ×éºÏ
-                }
+                maxCount = max(maxCount, Fun_activity(s, f, n1, i, m) + Fun_activity(s, f, i, n2, m) + 1);
             }
         }
         m[n1][n2] = maxCount;
@@ -34,20 +29,18 @@ int  Fun_activity(vector<int>& s, vector<int>& f, int n1, int n2, vector<vector<
     }
 }
 
-void GetMaxCompatibilities(vector<int>& s, vector<int>& f, vector<vector<int>>& p)
+void GetMaxCompatibilities(vector<int>& s, vector<int>& f)
 {
     int n = s.size();
     vector<vector<int>> m(n, vector<int>(n, -1));
-    cout << "×î´óÏà»¥¼æÈÝ»î¶¯×éºÏµÄÊýÁ¿Îª£º" << Fun_activity(s, f, 0, n - 1, m, p) << endl;
+    cout << "æœ€å¤§ç›¸äº’å…¼å®¹æ´»åŠ¨ç»„åˆçš„æ•°é‡ä¸ºï¼š" << Fun_activity(s, f, 0, n - 1, m) << endl;
 }
 
 int main()
 {
     vector<int> s = { 0, 1, 3, 0, 5, 3, 5, 6, 8, 8, 2, 12 };
     vector<int> f = { 0, 4, 5, 6, 7, 9, 9, 10, 11, 12, 14, 16 };
-    int n = s.size();
-    vector<vector<int>> p(n, vector<int>(n, -1));
-    GetMaxCompatibilities(s, f, p);
+    GetMaxCompatibilities(s, f);
     cout << endl;
     return 0;
 }
