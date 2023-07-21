@@ -48,8 +48,19 @@ NOTEBOOK
 
   #include <iostream>
   #include <map>//底层数据结构是红黑二叉树
+  #include <set>//同上，有序集合
   #include <unordered_map>//底层数据结构结构是哈希表
+  //C++中称之为映射，也分为有序映射（红黑二叉树）和无序映射，Python中称之为字典
+  #include <unordered_set>//同上，C++中的无序集合
 
+
+  //无序性： 集合中的元素是无序的，即集合不保持元素的插入顺序。
+
+   唯一性： 集合中不包含重复的元素，每个元素在集合中只能出现一次。如果尝试向集合中添加已经存在的元素，集合将不会发生变化。
+
+   可变性： 集合是可变类型，可以进行增加、删除等操作。
+
+  集合的主要作用在于去除重复元素，并且在集合上进行集合运算，例如并集、交集、差集等。集合在处理需要去重的数据或进行一些集合操作时非常有用。
 int main() {
     // 使用 std::map 存储键-值对，并按键的升序排列
     std::map<std::string, int> ages_map;
@@ -87,5 +98,7 @@ Using std::unordered_map:
 Bob's age: 25
 Charlie's age: 35
 Alice's age: 30
+
+
 
 
