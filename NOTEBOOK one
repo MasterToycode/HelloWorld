@@ -12,6 +12,9 @@ NOTEBOOK
     贪心选择是安全的：做出贪心选择原问题最优解总是存在。
     做出贪心选择之后，子问题满足性质：其最优解与贪心选择组合即可得到原问题的最优解。
     贪心算法通常适用于一些可以分割、可以取舍的问题，而不适用于需要满足特定约束条件的问题。
+
+   动态规划的算法利用了最优子结构的成立的条件，是从底向上解决问题。而贪心算法是在最优子结构和贪心选择成立下，（既然每一次的选择都是子问题的最优解，直接选择当前的最优）从顶向下。
+   贪心算法更加简单，但是并不是所有问题都适用。时常它只能得到一个问题的近似解。贪心算法之上必有一个更复杂的动态规划算法。
 2.红黑二叉树
   I.满足条件
   节点是红色或黑色：每个节点要么是红色，要么是黑色。
@@ -42,3 +45,47 @@ NOTEBOOK
   如果删除节点是黑色，可能需要进行旋转操作和颜色调整，以确保树的平衡和性质。
 
   观察红黑二叉树的基本操作，因为一棵红黑二叉树不可能存在两个红色节点相连并且为了满足黑高的定义，插入和删除的操作中，操作节点的旋转、调整故针对于此。
+
+  #include <iostream>
+  #include <map>//底层数据结构是红黑二叉树
+  #include <unordered_map>//底层数据结构结构是哈希表
+
+int main() {
+    // 使用 std::map 存储键-值对，并按键的升序排列
+    std::map<std::string, int> ages_map;
+    ages_map["Alice"] = 30;
+    ages_map["Bob"] = 25;
+    ages_map["Charlie"] = 35;
+
+    std::cout << "Using std::map:" << std::endl;
+    for (const auto& pair : ages_map) {
+        std::cout << pair.first << "'s age: " << pair.second << std::endl;
+    }
+    std::cout << std::endl;
+
+    // 使用 std::unordered_map 存储键-值对，无序存储
+    std::unordered_map<std::string, int> ages_unordered_map;
+    ages_unordered_map["Alice"] = 30;
+    ages_unordered_map["Bob"] = 25;
+    ages_unordered_map["Charlie"] = 35;
+
+    std::cout << "Using std::unordered_map:" << std::endl;
+    for (const auto& pair : ages_unordered_map) {
+        std::cout << pair.first << "'s age: " << pair.second << std::endl;
+    }
+    std::cout << std::endl;
+
+    return 0;
+}
+控制台的打印结果：
+Using std::map:
+Alice's age: 30
+Bob's age: 25
+Charlie's age: 35
+
+Using std::unordered_map:
+Bob's age: 25
+Charlie's age: 35
+Alice's age: 30
+
+
