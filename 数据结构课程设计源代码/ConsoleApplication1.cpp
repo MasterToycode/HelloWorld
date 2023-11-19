@@ -1,4 +1,4 @@
-﻿#include"h1.h"
+#include"h1.h"
 int main() 
 {   
     //数据文件的路径！
@@ -6,7 +6,7 @@ int main()
      string filePath2 = "D:\\不会编程\\数据结构\\Data Strcuture Design\\ConsoleApplication1\\课设排序数据\\10000.txt";
      string filePath3 = "D:\\不会编程\\数据结构\\Data Strcuture Design\\ConsoleApplication1\\课设排序数据\\100000.txt";
 
-
+     //说明程序操作！
     Explation();
     vector<long long int> moves(3, 0); // 创建一个大小为3的数组来存储移动次数
     vector<long long int> comparisons(3, 0); // 创建一个大小为3的数组来存储比较次数
@@ -62,12 +62,24 @@ int main()
                 validdatachioce = true; // 数据来源选择有效，跳出循环
                 break;
             case 2:
+
                 // 从文件读取数据
-                readDataFromFile(filePath1, data1);
-                readDataFromFile(filePath2, data2);
-                readDataFromFile(filePath3, data3);
-                validdatachioce = true; // 数据来源选择有效，跳出循环
-                break;
+                if (readDataFromFile(filePath1, data1)==1&& readDataFromFile(filePath2, data2)==1&& readDataFromFile(filePath3, data3)==1)
+                {
+                    validdatachioce = true; // 数据来源选择有效，跳出循环
+                    break;
+                }//数据文件路径正确并且成功读取！
+
+                else 
+                {
+                    GenerateRandomNumbers(data1, 5000, 1);
+                    GenerateRandomNumbers(data2, 5000, 2);
+                    GenerateRandomNumbers(data3, 5000, 3);
+                    validdatachioce = true; // 数据来源选择有效，跳出循环
+                    cout << "文件路径不正确，自动选择随机数生成的数据！" << endl;
+                    break;
+                }
+
             default:
                 // 用户选择无效，提示重新输入
                 cout << "选择无效的数据来源，请重新输入。" << endl << endl;
@@ -84,7 +96,12 @@ int main()
     }
 
 
+    cout <<endl<< "数据选择成功！" << endl;
+    this_thread::sleep_for(chrono::seconds(1));
+    system("cls"); // 对于Windows系统
     printHorizontalLine();
+    
+
     char continueSorting = 'y';
    
     //进入主循环
@@ -138,6 +155,7 @@ int main()
                 }
             }
 
+
             //如果输入的是数字！
             if (isAllDigits)
             {
@@ -145,49 +163,50 @@ int main()
 
                 //进入核心程序----选择排序算法排序！
 
-                switch (choice) 
+                switch (choice) //根据用户选择的排序算法，选择相应的函数进行排序
                 {
                 case 1:
-                    SortingTime1 = measureSortingTime1(data1, moves[0], comparisons[0]);
+                    SortingTime1 = measureSortingTime1(data1, moves[0], comparisons[0]); //调用希尔排序函数，返回排序时间，并记录数据移动次数和比较次数
                     SortingTime2 = measureSortingTime1(data2, moves[1], comparisons[1]);
                     SortingTime3 = measureSortingTime1(data3, moves[2], comparisons[2]);
-                    cout << "希尔排序结果：" << endl<<endl;
+                    cout << "希尔排序结果：" << endl << endl; //输出排序结果
                     validChoice = true;
                     break;
                 case 2:
-                    SortingTime1 = measureSortingTime2(data1, data1.size(), moves[0], comparisons[0]);
+                    SortingTime1 = measureSortingTime2(data1, data1.size(), moves[0], comparisons[0]); //调用堆排序函数，返回排序时间，并记录数据移动次数和比较次数
                     SortingTime2 = measureSortingTime2(data2, data2.size(), moves[1], comparisons[1]);
                     SortingTime3 = measureSortingTime2(data3, data3.size(), moves[2], comparisons[2]);
-                    cout << "堆排序结果：" << endl<<endl;
+                    cout << "堆排序结果：" << endl << endl; //输出排序结果
                     validChoice = true;
                     break;
                 case 3:
-                    SortingTime1 = measureSortingTime3(data1, 0, data1.size() - 1, moves[0], comparisons[0]);
+                    SortingTime1 = measureSortingTime3(data1, 0, data1.size() - 1, moves[0], comparisons[0]); //调用快速排序函数，返回排序时间，并记录数据移动次数和比较次数
                     SortingTime2 = measureSortingTime3(data2, 0, data2.size() - 1, moves[1], comparisons[1]);
                     SortingTime3 = measureSortingTime3(data3, 0, data3.size() - 1, moves[2], comparisons[2]);
-                    cout << "快速排序结果：" << endl<<endl;
+                    cout << "快速排序结果：" << endl << endl; //输出排序结果
                     validChoice = true;
                     break;
                 case 4:
-                    SortingTime1 = measureSortingTime4(data1, moves[0], comparisons[0]);
+                    SortingTime1 = measureSortingTime4(data1, moves[0], comparisons[0]); //调用基数排序函数，返回排序时间，并记录数据移动次数和比较次数
                     SortingTime2 = measureSortingTime4(data1, moves[1], comparisons[1]);
                     SortingTime3 = measureSortingTime4(data3, moves[2], comparisons[2]);
-                    cout << "基数排序结果：" << endl<<endl;
+                    cout << "基数排序结果：" << endl << endl; //输出排序结果
                     validChoice = true;
                     break;
                 case 5:
-                    SortingTime1 = measureSortingTime5(data1, moves[0], comparisons[0]);
+                    SortingTime1 = measureSortingTime5(data1, moves[0], comparisons[0]); //调用折半插入排序函数，返回排序时间，并记录数据移动次数和比较次数
                     SortingTime2 = measureSortingTime5(data2, moves[1], comparisons[1]);
                     SortingTime3 = measureSortingTime5(data3, moves[2], comparisons[2]);
-                    cout << "折半插入排序结果：" << endl<<endl;
+                    cout << "折半插入排序结果：" << endl << endl; //输出排序结果
                     validChoice = true;
                     break;
                 default:
-                    cout << "选择无效的排序算法，请重新输入。" << endl<<endl;
-                    break;
+                    cout << "选择无效的排序算法，请重新输入。" << endl << endl; //如果用户选择的排序算法无效，则输出错误提示
+                    
                 }
-                validChoice = true;
+                validChoice = true; //将validChoice设为true，退出循环
             }
+
 
             else //如果输入的不是数字！
             {
