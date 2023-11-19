@@ -2,13 +2,13 @@
 void Explation()
 {
     cout << "  ------------------------------------------"
-        << "»¶Ó­Ê¹ÓÃÊı¾İ½á¹¹ÅÅĞòËã·¨·ÖÎöÉè¼Æ---------------------------------------- " << endl
-        << "¸ÃËã·¨·ÖÎö·ÖÎªÁ½¸ö´óµÄÀà±ğ£¬¹©ÄúÑ¡Ôñ£¡" << endl
-        << "1.¶ÔËæ»úÉú³ÉµÄ3×é500¸ö´ıÅÅÕûÊı½øĞĞÅÅĞò" << endl
-        << "2.Ëæ»ú²úÉú3×éÊı¾İ¡ª¡ª1000¡¢10000¡¢100000¸ö´ıÅÅÕûÊı£¬´æÈëÎÄ¼ş£¬´ÓÎÄ¼ş¶ÁÈë´ıÅÅÊı¾İ½øĞĞÅÅĞò" << endl
-        << "Ã¿Ò»´ÎÆô¶¯³ÌĞòÖ®Ç°Äú¶¼ÓĞÒ»´Î»ú»áÑ¡ÔñÄúÏëÒªµÄÀà±ğ£¬µ«ÊÇÄú¿ÉÒÔÓĞ¶à´Î»ú»áÑ¡ÔñÅÅĞòµÄËã·¨£¡"<<endl
-        << "ÄúÖ»ĞèÒª°´ÕÕ³ÌĞòµÄÌáÊ¾ÕıÈ·ÊäÈëĞÅÏ¢¼´¿É¶Ô²»Í¬µÄÅÅĞòËã·¨½øĞĞ·ÖÎö£¡" << endl
-        << "²»×ãÖ¸³ö»¹ÍûÄúÅúÆÀÖ¸Õı£¡" << endl << endl;
+        << "æ¬¢è¿ä½¿ç”¨æ•°æ®ç»“æ„æ’åºç®—æ³•åˆ†æè®¾è®¡---------------------------------------- " << endl
+        << "è¯¥ç®—æ³•åˆ†æåˆ†ä¸ºä¸¤ä¸ªå¤§çš„ç±»åˆ«ï¼Œä¾›æ‚¨é€‰æ‹©ï¼" << endl
+        << "1.å¯¹éšæœºç”Ÿæˆçš„3ç»„500ä¸ªå¾…æ’æ•´æ•°è¿›è¡Œæ’åº" << endl
+        << "2.éšæœºäº§ç”Ÿ3ç»„æ•°æ®â€”â€”1000ã€10000ã€100000ä¸ªå¾…æ’æ•´æ•°ï¼Œå­˜å…¥æ–‡ä»¶ï¼Œä»æ–‡ä»¶è¯»å…¥å¾…æ’æ•°æ®è¿›è¡Œæ’åº" << endl
+        << "æ¯ä¸€æ¬¡å¯åŠ¨ç¨‹åºä¹‹å‰æ‚¨éƒ½æœ‰ä¸€æ¬¡æœºä¼šé€‰æ‹©æ‚¨æƒ³è¦çš„ç±»åˆ«ï¼Œä½†æ˜¯æ‚¨å¯ä»¥æœ‰å¤šæ¬¡æœºä¼šé€‰æ‹©æ’åºçš„ç®—æ³•ï¼"<<endl
+        << "æ‚¨åªéœ€è¦æŒ‰ç…§ç¨‹åºçš„æç¤ºæ­£ç¡®è¾“å…¥ä¿¡æ¯å³å¯å¯¹ä¸åŒçš„æ’åºç®—æ³•è¿›è¡Œåˆ†æï¼" << endl
+        << "ä¸è¶³æŒ‡å‡ºè¿˜æœ›æ‚¨æ‰¹è¯„æŒ‡æ­£ï¼" << endl << endl;
 }
 
 
@@ -20,16 +20,16 @@ void printHorizontalLine()
 }
 
 
-// Éú³ÉËæ»úÊı²¢´æ´¢ÔÚ´«ÈëµÄ vector ÖĞ
+// ç”Ÿæˆéšæœºæ•°å¹¶å­˜å‚¨åœ¨ä¼ å…¥çš„ vector ä¸­
 void GenerateRandomNumbers(vector<int>& numbers, int size,int t)
 {
-    // ÉèÖÃËæ»úÊıÒıÇæºÍÖÖ×Ó
+    // è®¾ç½®éšæœºæ•°å¼•æ“å’Œç§å­
     default_random_engine generator(static_cast<unsigned>(time(nullptr) + t));
-    uniform_int_distribution<int> distribution(1, 100000); // 1µ½100000µÄËæ»úÊı·Ö²¼
+    uniform_int_distribution<int> distribution(1, 100000); // 1åˆ°100000çš„éšæœºæ•°åˆ†å¸ƒ
 
     for (int i = 0; i < size; ++i)
     {
-        numbers.push_back(distribution(generator)); // Éú³ÉËæ»úÊı
+        numbers.push_back(distribution(generator)); // ç”Ÿæˆéšæœºæ•°
     }
 }
 
@@ -37,48 +37,48 @@ void GenerateRandomNumbers(vector<int>& numbers, int size,int t)
 
 void OutPut(long long int& moves, long long int& comparisons, double& SortingTime)
 {
-    cout << "ÅÅĞòÍê³É£¡" << endl;
-    cout << "±È½Ï´ÎÊı£º" << comparisons << " ´Î" << endl;
-    cout << "ÒÆ¶¯´ÎÊı£º" << moves << " ´Î" << endl;
-    cout << "ÅÅĞòÊ±¼ä£º" << SortingTime << " Ãë" << endl << endl;
+    cout << "æ’åºå®Œæˆï¼" << endl;
+    cout << "æ¯”è¾ƒæ¬¡æ•°ï¼š" << comparisons << " æ¬¡" << endl;
+    cout << "ç§»åŠ¨æ¬¡æ•°ï¼š" << moves << " æ¬¡" << endl;
+    cout << "æ’åºæ—¶é—´ï¼š" << SortingTime << " ç§’" << endl << endl;
 }
 
 
 
-//Éú³ÉËæ»úÊı²¢Ğ´ÈëÎÄ¼ş£¡
+//ç”Ÿæˆéšæœºæ•°å¹¶å†™å…¥æ–‡ä»¶ï¼
 void generateRandomNumbersToFile(string& filename,int count,int t)
 {
     ofstream file(filename);
     if (!file)
     {
-        cout<< "ÎŞ·¨´ò¿ªÎÄ¼ş" <<endl;
+        cout<< "æ— æ³•æ‰“å¼€æ–‡ä»¶" <<endl;
         return;
     }
 
-    // ÉèÖÃËæ»úÊıÒıÇæºÍÖÖ×Ó
+    // è®¾ç½®éšæœºæ•°å¼•æ“å’Œç§å­
     default_random_engine generator(static_cast<unsigned>(time(nullptr) + t));
-    uniform_int_distribution<int> distribution(1, 100000); // 1µ½100000µÄËæ»úÊı·Ö²¼
+    uniform_int_distribution<int> distribution(1, 100000); // 1åˆ°100000çš„éšæœºæ•°åˆ†å¸ƒ
 
     for (int i = 0; i <count; ++i)
     {
-        int random_num = distribution(generator); // Éú³ÉËæ»úÊı
-        file << random_num << endl;                 // Ğ´ÈëÎÄ¼ş
+        int random_num = distribution(generator); // ç”Ÿæˆéšæœºæ•°
+        file << random_num << endl;                 // å†™å…¥æ–‡ä»¶
     }
 
     file.close();
-    cout << "ÊäÈëÊı¾İ³É¹¦£¡" << endl;
+    cout << "è¾“å…¥æ•°æ®æˆåŠŸï¼" << endl;
 }
 
 
 /*
- string filePath1 = "D:\\²»»á±à³Ì\\Êı¾İ½á¹¹\\Data Strcuture Design\\ConsoleApplication1\\¿ÎÉèÅÅĞòÊı¾İ\\1000.txt";
-    int count1 = 1000; // ÄãÏëÉú³ÉµÄËæ»úÊıÊıÁ¿
+ string filePath1 = "D:\\ä¸ä¼šç¼–ç¨‹\\æ•°æ®ç»“æ„\\Data Strcuture Design\\ConsoleApplication1\\è¯¾è®¾æ’åºæ•°æ®\\1000.txt";
+    int count1 = 1000; // ä½ æƒ³ç”Ÿæˆçš„éšæœºæ•°æ•°é‡
 
-    string filePath2 = "D:\\²»»á±à³Ì\\Êı¾İ½á¹¹\\Data Strcuture Design\\ConsoleApplication1\\¿ÎÉèÅÅĞòÊı¾İ\\10000.txt";
-    int count2 = 10000; // ÄãÏëÉú³ÉµÄËæ»úÊıÊıÁ¿
+    string filePath2 = "D:\\ä¸ä¼šç¼–ç¨‹\\æ•°æ®ç»“æ„\\Data Strcuture Design\\ConsoleApplication1\\è¯¾è®¾æ’åºæ•°æ®\\10000.txt";
+    int count2 = 10000; // ä½ æƒ³ç”Ÿæˆçš„éšæœºæ•°æ•°é‡
 
-    string filePath3 = "D:\\²»»á±à³Ì\\Êı¾İ½á¹¹\\Data Strcuture Design\\ConsoleApplication1\\¿ÎÉèÅÅĞòÊı¾İ\\100000.txt";
-    int count3 = 100000; // ÄãÏëÉú³ÉµÄËæ»úÊıÊıÁ¿
+    string filePath3 = "D:\\ä¸ä¼šç¼–ç¨‹\\æ•°æ®ç»“æ„\\Data Strcuture Design\\ConsoleApplication1\\è¯¾è®¾æ’åºæ•°æ®\\100000.txt";
+    int count3 = 100000; // ä½ æƒ³ç”Ÿæˆçš„éšæœºæ•°æ•°é‡
 */
 
 
@@ -87,23 +87,23 @@ void generateRandomNumbersToFile(string& filename,int count,int t)
 
 
 
-// ´ÓÎÄ¼şÖĞ¶ÁÈ¡Êı¾İ²¢´æ´¢µ½ÏòÁ¿ÖĞ
-void readDataFromFile(string& filename, vector<int>& data) 
+// ä»æ–‡ä»¶ä¸­è¯»å–æ•°æ®å¹¶å­˜å‚¨åˆ°å‘é‡ä¸­
+int readDataFromFile(string& filename, vector<int>& data)
 {
-    ifstream file(filename);
-    if (!file) 
+    ifstream file(filename); // æ‰“å¼€æ–‡ä»¶
+    if (!file) // å¦‚æœæ— æ³•æ‰“å¼€æ–‡ä»¶
     {
-        cout << "ÎŞ·¨´ò¿ªÎÄ¼ş" << endl;
-        return;
+        cout << "æ— æ³•æ‰“å¼€æ–‡ä»¶" << endl; // è¾“å‡ºé”™è¯¯ä¿¡æ¯
+        return 0; // è¿”å›
     }
 
-    int number;
-    while (file >> number) 
+    int number; // å®šä¹‰ä¸€ä¸ªæ•´å‹å˜é‡æ¥å­˜å‚¨ä»æ–‡ä»¶ä¸­è¯»å–å‡ºæ¥çš„æ•°å­—
+    while (file >> number) // å¦‚æœè¿˜æœ‰æ•°å­—å¯ä»¥è¯»å–
     {
-        data.push_back(number);
+        data.push_back(number); // æŠŠæ•°å­—æ”¾åˆ°vectorä¸­
     }
 
-    cout << "Êı¾İ¶Á³ö³É¹¦£¡" << endl;
-    file.close();
+    cout << "æ•°æ®è¯»å‡ºæˆåŠŸï¼" << endl; // è¾“å‡ºæˆåŠŸä¿¡æ¯
+    file.close(); // å…³é—­æ–‡ä»¶
+    return 1;
 }
-
